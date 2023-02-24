@@ -1,0 +1,87 @@
+
+
+buildscript {
+    ext {
+        springPluginVersion = '2.7.5'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springPluginVersion")
+    }
+}
+
+apply plugin: "java"
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    project.ext {
+        swaggerVersion = "2.9.2"
+        lombokVersion = "1.18.24"
+        jsonVersion = "20220924"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-configuration-processor"
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+        implementation "org.springframework.boot:spring-boot-starter-mail"
+        implementation "org.springframework.boot:spring-boot-starter-validation"
+        implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+        implementation "org.springframework.boot:spring-boot-starter-web"
+
+        implementation "org.json:json:$jsonVersion"
+
+        implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
+        implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+
+        implementation "org.postgresql:postgresql"
+
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+group 'guzzydev.emailport'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
